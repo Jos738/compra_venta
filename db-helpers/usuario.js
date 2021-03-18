@@ -9,7 +9,7 @@ const existeUsuarioById=async(id)=> {
 }
 
 const existeUsuarioByIdNombre = async (nombre) => {
-    const existe = await Usuario.findById({ nombre })
+    const existe = await Usuario.findOne({ nombre })
     if(existe) throw new Error("Ya existe un usuario con ese nombre")
 
 }

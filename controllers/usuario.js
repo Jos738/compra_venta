@@ -26,6 +26,35 @@ const usuarioPost = async (req, res) => {
   });
 };
 
+const login = async(req, res) => {
+  const { email, password } = req.body;
+  const usuario = await Usuario.findOne({ email })
+  if (!usuario) {
+    return res.json({
+      msg:'usuario/password no son correctos E'
+    })
+  }
+  if (usuario.estado === 0) {
+    return res.json({
+      msg:'usuario/password no son correctos ES'
+    })
+  }
+  const validarpassword=bcryptjs.compareSync(password,usuario.password)
+  if (!validarpassword) {
+    return res.json({
+      msg:'usuario/password no son correctos Pss'
+    })
+  }
+
+const token=await generarJWT(usuario._id)
+
+  return res.json({
+    usuario,
+    token
+  })
+
+};
+
 const usuarioById = async (req, res) => {
   const { id } = req.params;
   const usuario = await Usuario.findById({ _id: id });
@@ -82,4 +111,5 @@ export {
   usuarioPut,
   usuarioActivar,
   usuarioDesactivar,
+  login,
 };

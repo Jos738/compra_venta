@@ -1,7 +1,15 @@
 import Router from "express";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import {existeUsuarioById,existeUsuarioByIdNombre,} from "../db-helpers/usuario.js";
-import {usuarioGet,usuarioById,usuarioPost,usuarioPut,usuarioActivar,usuarioDesactivar,} from "../controllers/usuario.js";
+import {
+  usuarioGet,
+  usuarioById,
+  usuarioPost,
+  usuarioPut,
+  usuarioActivar,
+  usuarioDesactivar,
+  login,
+} from "../controllers/usuario.js";
 import validator from "express-validator";
 const { check } = validator;
 
@@ -28,6 +36,8 @@ router.post(
   ],
   usuarioPost
 );
+
+router.post("/login", login)
 
 router.put(
   "/:id",
