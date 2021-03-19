@@ -1,5 +1,7 @@
 import Usuario from "../models/usuario.js";
 import bcryptjs from 'bcrypt';
+import { generarJWT } from '../middlewares/validar-jwt.js';
+
 
 const usuarioGet = async (req, res) => {
   const { value } = req.query;
@@ -42,10 +44,10 @@ const login = async(req, res) => {
   const validarpassword=bcryptjs.compareSync(password,usuario.password)
   if (!validarpassword) {
     return res.json({
-      msg:'usuario/password no son correctos Pss'
-    })
+      msg: "usuario/password no son correctos Pss",
+    });
   }
-
+ 
 const token=await generarJWT(usuario._id)
 
   return res.json({
