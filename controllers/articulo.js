@@ -49,7 +49,7 @@ const articuloPut = async (req, res) => {
   });
 };
 
-const articuloActivar = async (req,  res) => {
+const articuloActivar = async (req, res) => {
   const { id } = req.params;
   const articulo = await Articulo.findByIdAndUpdate(id, { estado: 1 });
 
