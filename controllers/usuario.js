@@ -31,19 +31,19 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const usuario = await Usuario.findOne({ email });
   if (!usuario) {
-    return res.json({
-      msg: "usuario/password no son correctos E",
+    return res.status(401).json({
+      msg: "usuario/password no son correctos",
     });
   }
   if (usuario.estado === 0) {
-    return res.json({
-      msg: "usuario/password no son correctos ES",
+    return res.status(401).json({
+      msg: "usuario/password no son correctos",
     });
   }
   const validarpassword = bcryptjs.compareSync(password, usuario.password);
   if (!validarpassword) {
-    return res.json({
-      msg: "usuario/password no son correctos Pss",
+    return res.status(401).json({
+      msg: "usuario/password no son correctos",
     });
   }
 
