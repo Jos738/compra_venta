@@ -8,8 +8,8 @@ const personaGet = async (req, res) => {
 };
 
 const personaPost = async (req, res) => {
-  const {tipoPersona,nombre,direccion,telefono,email,} = req.body;
-  const persona = new Persona({tipoPersona,nombre,direccion,telefono,email});
+  const {tipoPersona,nombre,documento,Iddocumento,direccion,telefono,email,} = req.body;
+  const persona = new Persona({tipoPersona,nombre,documento,Iddocumento,direccion,telefono,email});
   await persona.save();
   res.json({
     persona,
