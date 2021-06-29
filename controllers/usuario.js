@@ -17,8 +17,8 @@ const usuarioGet = async (req, res) => {
 };
 
 const usuarioPost = async (req, res) => {
-  const { nombre, email, password, rol } = req.body;
-  const usuario = new Usuario({ nombre, email, password, rol });
+  const { nombre,documento,Iddocumento,direccion,telefono,email, password, rol } = req.body;
+  const usuario = new Usuario({ nombre,documento,Iddocumento,direccion,telefono,email, password, rol });
   const salt = bcryptjs.genSaltSync();
   usuario.password = bcryptjs.hashSync(password, salt);
   await usuario.save();
