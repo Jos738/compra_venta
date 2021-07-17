@@ -15,7 +15,7 @@ class Server {
     this.app = express();
 
     this.dbConexion();
-
+    
     this.middlewares();
 
     this.routes();

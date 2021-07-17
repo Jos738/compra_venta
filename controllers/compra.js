@@ -9,8 +9,8 @@ const compraGet = async (req, res) => {
     ],
   })
     .sort({ createdAt: -1 })
-    .populate("usuarios", ["nombre", "email"])
-    .populate("personas", ["nombre", "tipoDocumento"]);
+    .populate("usuario", ["nombre", "email"])
+    .populate("persona", ["nombre", "tipoDocumento"]);
 
   res.json({
     compra,
@@ -55,8 +55,8 @@ const compraPost = async (req, res) => {
 const compraById = async (req, res) => {
   const { id } = req.params;
   const compra = await Compra.findOne({ _id: id })
-    .populate("usuarios", ["nombre", "email"])
-    .populate("personas ", ["nombre", "tipoDocumento"]);
+    .populate("usuario", ["nombre", "email"])
+    .populate("persona ", ["nombre", "tipoDocumento"]);
 
   res.json({
     compra,

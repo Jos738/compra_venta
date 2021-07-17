@@ -3,8 +3,8 @@ import modificarStock from "../db-helpers/modificarStock.js";
 
 const ventaGet = async (req, res) => {
   const venta = await Venta.find()
-    .populate("usuarios", "nombre", "email")
-    .populate("personas", "nombre", "tipoDocumento");
+    .populate("usuario", "nombre", "email")
+    .populate("persona", "nombre", "tipoDocumento");
   res.json({
     venta,
   });
@@ -52,8 +52,8 @@ const ventaPost = async (req, res) => {
 const ventaById = async (req, res) => {
   const { id } = req.params;
   const venta = await Venta.findOne({ _id: id })
-    .populate("usuarios", ["nombre", "email"])
-    .populate("personas ", ["nombre", "tipoDocumento"]);
+    .populate("usuario", ["nombre", "email"])
+    .populate("persona ", ["nombre", "tipoDocumento"]);
 
   res.json({
     venta,
